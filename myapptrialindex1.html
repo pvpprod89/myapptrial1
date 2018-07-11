@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Random Pictures of Dogs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Random Pictures of Dogs</h1>
+
+    <div id="dogPicture"></div>
+    <!-- <img src="https://dog.ceo/api/breeds/image/random" alt="random image" class="random-image"> -->
+
+    <button type="button" class="btn btn-outline-primary">Click me to get Image</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      $(".btn").on("click", function (event) {
+
+        event.preventDefault();
+
+        var queryURL = "https://dog.ceo/api/breeds/image/random";
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function (response) {
+          console.log(response);
+          $("#dogPicture").html('<img src=' + JSON.stringify(response.message) + '>');
+        })
+      });
+    </script>
+  </div>
+</body>
+
+</html>
